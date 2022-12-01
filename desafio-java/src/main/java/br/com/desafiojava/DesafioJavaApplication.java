@@ -10,6 +10,7 @@ public class DesafioJavaApplication {
 
 		SpringApplication.run(DesafioJavaApplication.class, args);
 
+
 //		String nome = "Catarina De Oliveira Souza";
 //		System.out.println(nome.substring(0, 7));
 
