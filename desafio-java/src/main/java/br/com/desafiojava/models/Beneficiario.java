@@ -1,6 +1,6 @@
 package br.com.desafiojava.models;
 
-public class Arquivo {
+public class Beneficiario {
     private String cpf;
     private String data;
     private String valor;
@@ -11,8 +11,20 @@ public class Arquivo {
     private Transacao transacao;
 
     //construtor default
-    public Arquivo() {
+    public Beneficiario() {
         this.transacao = new Transacao();
+    }
+
+    public Beneficiario(String cpf, String data, String valor, String cartao, String hora,
+                        String donoLoja, String nomeLoja, Transacao transacao){
+        this.cpf = cpf;
+        this.data = data;
+        this.valor = valor;
+        this.cartao = cartao;
+        this.hora = hora;
+        this.donoLoja = donoLoja;
+        this.nomeLoja = nomeLoja;
+        this.transacao = transacao;
     }
 
     //métodos getters e setters

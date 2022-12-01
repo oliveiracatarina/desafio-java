@@ -1,13 +1,13 @@
 package br.com.desafiojava.controller;
 
-import br.com.desafiojava.models.Arquivo;
+import br.com.desafiojava.models.Beneficiario;
 import br.com.desafiojava.service.ArquivoService;
 import br.com.desafiojava.service.TransacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-public class TransacaoController {
+public class BeneficiarioController {
 
     @Autowired
     private ArquivoService arquivoService;
@@ -16,7 +16,7 @@ public class TransacaoController {
     private TransacaoService transacaoService;
 
     @GetMapping
-    public Arquivo getArquivo(
+    public Beneficiario getArquivo(
             @RequestParam(value = "cpf") String cpf,
             @RequestParam(value = "data") String data,
             @RequestParam(value = "valor") String valor,
