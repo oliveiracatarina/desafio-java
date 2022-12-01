@@ -1,7 +1,7 @@
 package br.com.desafiojava.controller;
 
 import br.com.desafiojava.models.Beneficiario;
-import br.com.desafiojava.service.ArquivoService;
+import br.com.desafiojava.service.BeneficiarioService;
 import br.com.desafiojava.service.TransacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class BeneficiarioController {
 
     @Autowired
-    private ArquivoService arquivoService;
+    private BeneficiarioService beneficiarioService;
 
     @Autowired
     private TransacaoService transacaoService;

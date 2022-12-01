@@ -1,29 +1,39 @@
 package br.com.desafiojava.arquivo;
 
-import org.springframework.core.io.ClassPathResource;
 
 import java.io.*;
 import java.nio.Buffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class LerArquivo {
 
-    public LerArquivo() {
-        Path path = Paths.get("C:/workspace/desafio-java/cnab.txt");
+    public LerArquivo() throws IOException {
 
-        try {
-            String content = Files.readString(path);
-        } catch (IOException e) {
-            //escreve no console o erro
-            e.printStackTrace();
-//            throw new RuntimeException(e);
-        }
+        File arquivo = new File("C:/workspace/desafio-java/cnab.txt");
+        byte [] bytes = Files.readAllBytes(arquivo.toPath());
+        String textoDoArquivo = new String(bytes, "UTF-8");
 
+        List<String> stringSeparada = new ArrayList<String>();
+        int index = 0;
+        int qtdCaracteresPorLinha = 100;
+        while (index < textoDoArquivo.length()){
 
+            stringSeparada.add(textoDoArquivo.substring(index.Math.min(index
+                    + qtdCaracteresPorLinha, textoDoArquivo.length())));
+            index += qtdCaracteresPorLinha;
     }
+}
+
+}
+
+
+
+
 
 
 
@@ -37,6 +47,7 @@ public class LerArquivo {
 //            linha = br.readLine();
 //        }
 
+
 //    //separando por linha
 //    public LerArquivo mostrarLinhas(){
 //        String linha = ""; //inicializando a variavel
@@ -48,7 +59,17 @@ public class LerArquivo {
 //    }
 
 
-}
+    //        Path path = Paths.get("C:/workspace/desafio-java/cnab.txt");
+//
+//        try {
+//            String content = Files.readString(path);
+//        } catch (IOException e) {
+//            //escreve no console o erro
+//            e.printStackTrace();
+////            throw new RuntimeException(e);
+//        }
+
+
 
 
 

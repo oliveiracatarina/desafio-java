@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ArquivoService {
+public class BeneficiarioService {
 
     private List<Beneficiario> beneficiarios = new ArrayList<>();
 
