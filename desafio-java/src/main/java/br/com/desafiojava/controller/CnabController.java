@@ -1,22 +1,22 @@
 package br.com.desafiojava.controller;
 
-import br.com.desafiojava.models.Beneficiario;
-import br.com.desafiojava.service.BeneficiarioService;
-import br.com.desafiojava.service.TransacaoService;
+import br.com.desafiojava.models.Transacao;
+import br.com.desafiojava.arquivo.Documentacao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-public class BeneficiarioController {
-
-    @Autowired
-    private BeneficiarioService beneficiarioService;
+@RestController
+@RequestMapping
+public class CnabController {
 
     @Autowired
-    private TransacaoService transacaoService;
+    private Documentacao documentacao;
+
+    @Autowired
+
 
     @GetMapping
-    public Beneficiario getArquivo(
+    public Transacao getCnab(
             @RequestParam(value = "cpf") String cpf,
             @RequestParam(value = "data") String data,
             @RequestParam(value = "valor") String valor,
@@ -31,4 +31,8 @@ public class BeneficiarioController {
     ){
         return null;
     }
+
+
+
+
 }
