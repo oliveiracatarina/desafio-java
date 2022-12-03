@@ -26,12 +26,12 @@ import java.util.List;
         listaTransacao = new ArrayList<>();
         final List<String> linhas = lerTexto.lerArquivo(path);
 
-        for (String linha : linhas){
+        for (String linha : linhas) {
             Transacao transacao = new Transacao();
             TipoTransacao tipoTransacao = new TipoTransacao();
 
-
-            int tipo = Integer.parseInt(linha.substring(0,1).trim());
+            //tipo de transação
+            int tipo = Integer.parseInt(linha.substring(0, 1).trim());
             tipoTransacao.setTipoTransacao(tipo);
             tipoTransacao.setNatureza(tipoTransacao.getNatureza());
             tipoTransacao.setDescricao(tipoTransacao.getDescricao());
@@ -39,14 +39,39 @@ import java.util.List;
 
             transacao.setTipoTransacao(tipoTransacao);
 
-            String data = linha.substring(1,9).trim();
-            
+            //data formatada
+            String data = linha.substring(1, 9).trim();
+            LocalDate dataFormatada = LocalDate.parse((data));
+            transacao.setData(dataFormatada);
 
+            //valor /100
+            double valor = Double.parseDouble(linha.substring(9,19).trim());
+            transacao.setValor(valor / 100);
+
+            //restante do documento
+            transacao.setCpf(linha.substring(19,30));
+            transacao.setCartao(linha.substring(30,42));
+            transacao.setHora(linha.substring(42,48));
+            transacao.setDonoLoja(linha.substring(48,62).trim());
+            transacao.setNomeLoja(linha.substring(62,80));
+
+            listaTransacao.add(transacao);
         }
+        return listaTransacao;
     }
 
+    //all
+    public List<Transacao> procurarPorCpf (String cpf){
+        List<Transacao> listaTransacaoCpf = new ArrayList<>();
+        if (listaTransacao == null || listaTransacao.isEmpty()){
+            tudo();
+        }
+        for (Transacao t : listaTransacao) {
+            if (t.getCpf().equals(cpf)) listaTransacaoCpf.add(t);
+        }
+        return listaTransacaoCpf;
 
-
+    }
 
 
 
