@@ -4,6 +4,7 @@ import br.com.desafiojava.models.TipoTransacao;
 import br.com.desafiojava.models.Transacao;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +20,11 @@ import java.util.List;
         this.lerTexto = lerTexto;
     }
 
+    //caminho p/ ler texto
     public List<Transacao> tudo() {
         String path = "C:/workspace/desafio-java";
         listaTransacao = new ArrayList<>();
-        final List<String> linhas = lerTexto.readerFile(path);
+        final List<String> linhas = lerTexto.lerArquivo(path);
 
         for (String linha : linhas){
             Transacao transacao = new Transacao();
@@ -30,10 +32,16 @@ import java.util.List;
 
 
             int tipo = Integer.parseInt(linha.substring(0,1).trim());
-            tipoTransacao.setTipo(tipo);
-            tipoTransacao.setNatureza(tipoTransacao.getNatureza(tipo));
-            tipoTransacao.setDescricao(tipoTransacao.getDescricao(tipo));
+            tipoTransacao.setTipoTransacao(tipo);
+            tipoTransacao.setNatureza(tipoTransacao.getNatureza());
+            tipoTransacao.setDescricao(tipoTransacao.getDescricao());
             tipoTransacao.setSinal(tipoTransacao.getSinal());
+
+            transacao.setTipoTransacao(tipoTransacao);
+
+            String data = linha.substring(1,9).trim();
+            
+
         }
     }
 

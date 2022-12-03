@@ -8,10 +8,12 @@ import java.util.Scanner;
 
 public class LerTexto {
 
+    //leitura do arquivo txt (linha por linha)
     public List<String> lerArquivo(String path) {
         List<String> linhas = new ArrayList<>();
         File arquivoBase = new File(path);
 
+        //tratamento de excecao
         try{
             Scanner leituraBase = new Scanner(arquivoBase);
             while (leituraBase.hasNextLine()){
