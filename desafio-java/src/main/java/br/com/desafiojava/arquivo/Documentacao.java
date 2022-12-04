@@ -2,7 +2,7 @@ package br.com.desafiojava.arquivo;
 
 import br.com.desafiojava.models.TipoTransacao;
 import br.com.desafiojava.models.Transacao;
-import org.springframework.stereotype.Service;
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -85,7 +85,7 @@ import java.util.List;
         double periodo = 0;
         for (Transacao t : listaTransacao){
             if (t.getData().isBefore(fim) && t.getData().isAfter(inicio)){
-                periodo += t.getValor(); //verificar
+                periodo += t.getValor();
             }
         }
         return periodo;

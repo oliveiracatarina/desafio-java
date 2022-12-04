@@ -4,6 +4,7 @@ import br.com.desafiojava.arquivo.Documentacao;
 import br.com.desafiojava.arquivo.LerTexto;
 import br.com.desafiojava.models.Transacao;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +30,14 @@ public class TransacaoController {
     @GetMapping (value = "/all")
     public ResponseEntity<List<Transacao>> todos() {
         List<Transacao> listaTransacao = documentacao.tudo();
-        return ResponseEntity.ok(listaTransacao);
+        return ResponseEntity.status(HttpStatus.OK).body(listaTransacao);
+    }
+
+
+    @GetMapping (value = "/find-by-cpf")
+    public ResponseEntity<List<Transacao>> porCpf(@RequestParam("cpf") String cpf){
+        List<Transacao> listaTransacao = documentacao.procurarPorCpf(cpf);
+        return ResponseEntity.status(HttpStatus.OK).body(listaTransacao);
     }
 
     @GetMapping (value = "/total-amout-by-period")
@@ -40,7 +48,7 @@ public class TransacaoController {
             @RequestParam ("fim")
             @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fim) {
         Double periodo = documentacao.entreDuasDatas(inicio, fim);
-        return ResponseEntity.ok(periodo);
+        return ResponseEntity.status(HttpStatus.OK).body(periodo);
     }
 
 
