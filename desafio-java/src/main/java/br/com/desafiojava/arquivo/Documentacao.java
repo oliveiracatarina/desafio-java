@@ -34,15 +34,15 @@ import java.util.List;
             //tipo de transação
             int tipo = Integer.parseInt(linha.substring(0, 1).trim());
             tipoTransacao.setTipoTransacao(tipo);
-            tipoTransacao.setNatureza(tipoTransacao.getNatureza());
-            tipoTransacao.setDescricao(tipoTransacao.getDescricao());
-            tipoTransacao.setSinal(tipoTransacao.getSinal());
+            tipoTransacao.setNatureza(setNatureza(tipo));
+            tipoTransacao.setDescricao(setDescricao(tipo));
+            tipoTransacao.setSinal(setSinal(tipo));
 
             transacao.setTipoTransacao(tipoTransacao);
 
             //data
             String data = linha.substring(1, 9).trim();
-            LocalDate dataFormatada = LocalDate.parse((data));
+            LocalDate dataFormatada = getDataFormatada(data);
             transacao.setData(dataFormatada);
 
             //valor /100
@@ -55,6 +55,7 @@ import java.util.List;
             transacao.setHora(linha.substring(42,48));
             transacao.setDonoLoja(linha.substring(48,62).trim());
             transacao.setNomeLoja(linha.substring(62,80));
+
 
             listaTransacao.add(transacao);
         }
@@ -77,23 +78,23 @@ import java.util.List;
 
 
     //total-amout-by-period
-    public double entreDuasDatas (LocalDate inicio, LocalDate fim){
+    public List<Transacao> entreDuasDatas (LocalDate inicio, LocalDate fim){
 
         if (listaTransacao == null || listaTransacao.isEmpty()) {
             tudo();
         }
-        double periodo = 0;
+        List<Transacao> listaFiltrada = new ArrayList<>();
         for (Transacao t : listaTransacao){
             if (t.getData().isBefore(fim) && t.getData().isAfter(inicio)){
-                periodo = entreDuasDatas(inicio,fim);
+                listaFiltrada.add(t);
             }
         }
-        return periodo;
+        return listaFiltrada;
     }
 
 
     //tipo de transacao
-    public String tipoTransacao (int tipo){
+    public String setNatureza (int tipo){
         if (tipo == 1 || tipo == 4 || tipo == 5 || tipo == 6
         || tipo == 7 || tipo == 8)
             return "Entrada";
@@ -106,7 +107,7 @@ import java.util.List;
 
 
     //sinal da transacao
-    public String sinal (int tipo){
+    public String setSinal (int tipo){
         if (tipo == 1 || tipo == 4 || tipo == 5 || tipo == 6
                 || tipo == 7 || tipo == 8)
             return "+";
@@ -119,7 +120,7 @@ import java.util.List;
 
 
     //descricao da transacao
-    public String descricao (int tipo) {
+    public String setDescricao (int tipo) {
         if (tipo == 1) return "Debito";
         if (tipo == 2) return "Boleto";
         if (tipo == 3) return "Financeiro";
@@ -137,12 +138,8 @@ import java.util.List;
           String dataformat = data.substring(0,4) + "-" +
                   data.substring(4,6) + "-" +
                   data.substring(6, 8);
-
-          LocalDate localDate = LocalDate.parse(dataformat);
           return LocalDate.parse(dataformat);
-
         }
-
     }
 
 

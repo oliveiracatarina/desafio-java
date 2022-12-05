@@ -41,14 +41,14 @@ public class TransacaoController {
     }
 
     @GetMapping (value = "/total-amout-by-period")
-    public ResponseEntity<Double> totalPorPeriodo (
+    public ResponseEntity<List<Transacao>> totalPorPeriodo (
             @RequestParam("inicio")
             @DateTimeFormat(pattern = "yyyy-MM-dd")    //pattern -> padronizar
             LocalDate inicio,
             @RequestParam ("fim")
             @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fim) {
-        Double periodo = documentacao.entreDuasDatas(inicio, fim);
-        return ResponseEntity.status(HttpStatus.OK).body(periodo);
+        List<Transacao> listaFiltrada = documentacao.entreDuasDatas(inicio, fim);
+        return ResponseEntity.status(HttpStatus.OK).body(listaFiltrada);
     }
 
 
