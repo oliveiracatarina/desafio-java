@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/transacao")
 public class TransacaoController {
 
     private final Documentacao documentacao = new Documentacao(new LerTexto());

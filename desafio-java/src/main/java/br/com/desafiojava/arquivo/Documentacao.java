@@ -22,7 +22,7 @@ import java.util.List;
 
     //caminho p/ ler texto - retorna tudo
     public List<Transacao> tudo() {
-        String path = "C:/workspace/desafio-java";
+        String path = "C:/workspace/desafio-java/cnab.txt";
         listaTransacao = new ArrayList<>();
         final List<String> linhas = lerTexto.lerArquivo(path);
 
@@ -85,7 +85,7 @@ import java.util.List;
         double periodo = 0;
         for (Transacao t : listaTransacao){
             if (t.getData().isBefore(fim) && t.getData().isAfter(inicio)){
-                periodo += t.getValor();
+                periodo = entreDuasDatas(inicio,fim);
             }
         }
         return periodo;
